@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import pandas
 
 url = "http://www.century21.com"
 r = requests.get(url)
@@ -39,4 +40,7 @@ for item in all:
             if "Lot Size" in feature_group.text:
                 d["Lot Size"] = feature_name.text
     l.append(d)
+
+df = pandas.DataFrame(l)
+df.to_csv("Output.csv")
 
